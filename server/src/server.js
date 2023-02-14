@@ -2,6 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import viewEngine from './config/viewEngine'
 import initRouter from './routes/init'
+import connect from './config/connectDB'
 require('dotenv').config()
 
 const app = express()
@@ -12,6 +13,8 @@ app.use(bodyParser.json())
 
 viewEngine(app)
 initRouter(app)
+
+connect()
 
 app.listen(PORT, () => {
   console.log('Server is listening on port ' + PORT)

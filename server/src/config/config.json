@@ -4,11 +4,12 @@
     "password": "password",
     "database": "test_2",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": false
   },
   "production": {
     "username": "sqluser",
-    "password": null,
+    "password": "password",
     "database": "hospital_booking",
     "host": "127.0.0.1",
     "dialect": "mysql"
