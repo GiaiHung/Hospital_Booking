@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "sqluser",
+    "password": "password",
+    "database": "test_2",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "sqluser",
+    "password": null,
+    "database": "hospital_booking",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
