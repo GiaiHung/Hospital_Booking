@@ -2,7 +2,7 @@
   "development": {
     "username": "sqluser",
     "password": "password",
-    "database": "test_2",
+    "database": "hospital_booking",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false
