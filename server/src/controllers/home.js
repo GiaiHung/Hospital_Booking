@@ -1,4 +1,5 @@
 import db from '../models/index'
+import bcrypt from 'bcryptjs'
 
 const getHome = async (req, res) => {
   try {
@@ -11,4 +12,34 @@ const getHome = async (req, res) => {
   }
 }
 
-export { getHome }
+const getCRUDPage = (req, res) => {
+  res.render('crud.ejs')
+}
+
+const createUser = async (req, res) => {
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    address,
+    phonenumber,
+    gender,
+    roleId,
+  } = req.body
+  const salt = bcrypt.genSaltSync(10)
+  const hash = await bcrypt.hashSync(password, salt)
+  const user = await db.User.create({
+    email,
+    password: hash,
+    firstName,
+    lastName,
+    address,
+    phonenumber,
+    gender: gender === '1' ? true : false,
+    roleId,
+  })
+  res.status(201).json({ message: 'New user has been created', user })
+}
+
+export { getHome, getCRUDPage, createUser }
