@@ -27,6 +27,14 @@ const createUser = async (req, res) => {
     gender,
     roleId,
   } = req.body
+  const ifUserExisted = await db.User.findOne({ where: { email } })
+  if (ifUserExisted)
+    return res
+      .status(400)
+      .json({
+        status: 'failed',
+        message: 'User already exists. Please try another email!',
+      })
   const salt = bcrypt.genSaltSync(10)
   const hash = await bcrypt.hashSync(password, salt)
   const user = await db.User.create({
@@ -39,7 +47,7 @@ const createUser = async (req, res) => {
     gender: gender === '1' ? true : false,
     roleId,
   })
-  res.status(201).json({ message: 'New user has been created', user })
+  res.status(201).json({ message: 'New user has been created', data: user })
 }
 
 export { getHome, getCRUDPage, createUser }
